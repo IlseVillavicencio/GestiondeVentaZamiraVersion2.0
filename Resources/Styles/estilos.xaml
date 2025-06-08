@@ -1,0 +1,126 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Fuente base y fondo de ventana -->
+    <Style TargetType="Window" x:Key="RootWindowStyle">
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="Background" Value="#F9F9F9"/>
+    </Style>
+
+    <!-- Colores base -->
+    <SolidColorBrush x:Key="RosaBrush" Color="#DD2180"/>
+    <SolidColorBrush x:Key="RosaTextBrush" Color="#231120"/>
+
+    <SolidColorBrush x:Key="VerdeBrush" Color="#90C867"/>
+    <SolidColorBrush x:Key="VerdeTextBrush" Color="#0F2600"/>
+
+    <SolidColorBrush x:Key="AzulBrush" Color="#03B0DA"/>
+    <SolidColorBrush x:Key="AzulTextBrush" Color="#002531"/>
+
+    <SolidColorBrush x:Key="AmarilloBrush" Color="#F5BD34"/>
+    <SolidColorBrush x:Key="AmarilloTextBrush" Color="#332600"/>
+
+    <SolidColorBrush x:Key="NaranjaBrush" Color="#EE612C"/>
+    <SolidColorBrush x:Key="NaranjaTextBrush" Color="#301400"/>
+
+    <SolidColorBrush x:Key="LilaBrush" Color="#AF98D0"/>
+    <SolidColorBrush x:Key="LilaTextBrush" Color="#1A1026"/>
+
+    <!-- Estilo para tarjetas (Cards) -->
+    <Style x:Key="CardStyle" TargetType="Border">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="Padding" Value="20"/>
+        <Setter Property="CornerRadius" Value="12"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="6" Opacity="0.1"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Margin" Value="0,0,0,10"/>
+    </Style>
+
+    <!-- Estilo para Inputs (TextBox, ComboBox, TextArea) -->
+    <Style TargetType="TextBox" x:Key="InputStyle">
+        <Setter Property="BorderBrush" Value="#CCC"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="8"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Background" Value="White"/>
+        <!-- Quitar CornerRadius aquí -->
+    </Style>
+
+    <Style TargetType="ComboBox" x:Key="SelectStyle">
+        <Setter Property="Padding" Value="2,2,6,6"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="Height" Value="26"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderBrush" Value="#CCC"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <!-- Quitar CornerRadius aquí -->
+    </Style>
+
+    <!-- Botón general con verde como base -->
+    <Style TargetType="Button" x:Key="ButtonStyle">
+        <Setter Property="Background" Value="{StaticResource VerdeBrush}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Padding" Value="10,10,20,20"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" 
+                  CornerRadius="6" 
+                  BorderBrush="{TemplateBinding BorderBrush}" 
+                  BorderThickness="{TemplateBinding BorderThickness}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#7ab650"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Clases de texto con colores -->
+    <Style x:Key="TextRosa" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource RosaBrush}"/>
+    </Style>
+    <Style x:Key="TextVerde" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource VerdeBrush}"/>
+    </Style>
+    <Style x:Key="TextAzul" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource AzulBrush}"/>
+    </Style>
+    <Style x:Key="TextAmarillo" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource AmarilloBrush}"/>
+    </Style>
+    <Style x:Key="TextNaranja" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource NaranjaBrush}"/>
+    </Style>
+    <Style x:Key="TextLila" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource LilaBrush}"/>
+    </Style>
+
+    <!-- Botón activo de menú -->
+    <Style x:Key="MenuButtonActivo" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
+        <Setter Property="Background" Value="{StaticResource RosaBrush}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+
+    <!-- Botones inactivos de menú -->
+    <Style x:Key="MenuButton" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
+        <Setter Property="Background" Value="{StaticResource LilaBrush}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+
+</ResourceDictionary>
+

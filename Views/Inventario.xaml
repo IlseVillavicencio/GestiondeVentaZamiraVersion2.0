@@ -1,0 +1,25 @@
+﻿<Window x:Class="GestiondeVentaZamira.Views.Inventario"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Inventario" Height="450" Width="600"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <DataGrid x:Name="inventarioDataGrid"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  IsReadOnly="False"
+                  CellEditEnding="InventarioDataGrid_CellEditEnding">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Producto"
+                                    Binding="{Binding NombreProducto}"
+                                    IsReadOnly="True"
+                                    Width="*"/>
+                <DataGridTextColumn Header="Stock"
+                                    Binding="{Binding StockActual, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    Width="100" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
+
+

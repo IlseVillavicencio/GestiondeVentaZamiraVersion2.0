@@ -1,0 +1,19 @@
+﻿<Window x:Class="GestiondeVentaZamira.Views.Logistica"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Logística" Height="350" Width="400">
+    <Grid Margin="10">
+        <StackPanel>
+            <TextBlock Text="Número de pedido:"/>
+            <TextBox x:Name="campoPedido"/>
+
+            <TextBlock Text="Dirección de entrega:"/>
+            <TextBox x:Name="campoDireccion"/>
+
+            <ListBox x:Name="listaEnvios" Height="100" Margin="0,10,0,10"/>
+
+            <Button x:Name="btnProgramar" Content="Programar envío" Click="BtnProgramar_Click" />
+        </StackPanel>
+    </Grid>
+</Window>
+

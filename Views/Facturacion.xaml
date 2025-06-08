@@ -1,0 +1,26 @@
+﻿<Window x:Class="GestiondeVentaZamira.Views.Facturacion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Facturación" Height="450" Width="600"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,0,10">
+            <Button x:Name="btnNuevaFactura" Content="Nueva Factura" Width="120" Margin="0,0,10,0" />
+            <Button x:Name="btnVerDetalles" Content="Ver Detalles" Width="120" Margin="0,0,10,0" />
+            <Button x:Name="btnEliminar" Content="Eliminar" Width="120" />
+        </StackPanel>
+
+        <DataGrid x:Name="tablaFacturas" Grid.Row="1" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="80"/>
+                <DataGridTextColumn Header="Cliente" Binding="{Binding Cliente}" Width="*"/>
+                <DataGridTextColumn Header="Total" Binding="{Binding Total}" Width="100" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

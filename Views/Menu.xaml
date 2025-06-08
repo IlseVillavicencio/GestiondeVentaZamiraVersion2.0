@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="GestiondeVentaZamira.Views.Menu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Height="600" Width="950">
+    <UserControl.Resources>
+        <!-- Estilo básico para los botones del menú -->
+        <Style x:Key="MenuButtonStyle" TargetType="Button">
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="5,0"/>
+            <Setter Property="Background" Value="#FFDDDDDD"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="5" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFB0C4DE"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#FF778899"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <DockPanel>
+
+        <!-- Menú superior con botones -->
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#EEE" HorizontalAlignment="Center" Margin="0,10">
+            <Button Content="📦 Pedido" Style="{StaticResource MenuButtonStyle}" Click="IrAPedido_Click"/>
+            <Button Content="🛒 Productos" Style="{StaticResource MenuButtonStyle}" Click="IrAProducto_Click"/>
+            <Button Content="📦 Inventario" Style="{StaticResource MenuButtonStyle}" Click="IrAInventario_Click"/>
+            <Button Content="💰 Facturación" Style="{StaticResource MenuButtonStyle}" Click="IrAFacturacion_Click"/>
+            <Button Content="🔔 Notificaciones" Style="{StaticResource MenuButtonStyle}" Click="IrANotificaciones_Click"/>
+            <Button Content="🛠 Soporte" Style="{StaticResource MenuButtonStyle}" Click="IrASoporte_Click"/>
+            <Button Content="🚚 Logística" Style="{StaticResource MenuButtonStyle}" Click="IrALogistica_Click"/>
+            <Button Content="👑 Admin" Style="{StaticResource MenuButtonStyle}" Click="IrAAdmin_Click"/>
+        </StackPanel>
+
+        <!-- ContentControl para cargar vistas dinámicas -->
+        <ContentControl x:Name="contenidoContentControl" />
+
+    </DockPanel>
+</UserControl>
+
+
