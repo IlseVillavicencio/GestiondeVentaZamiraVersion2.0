@@ -1,10 +1,14 @@
 ﻿<Window x:Class="GestiondeVentaZamira.Views.Pedido"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Realizar Pedido" Height="600" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Realizar Pedido" Height="Auto" Width="Auto" WindowStartupLocation="CenterScreen">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="10">
         <StackPanel Orientation="Vertical">
+
+            <TextBlock Style="{StaticResource TextNaranja}" Text="📦 Pedido"
+               FontSize="20" FontWeight="Bold"
+               Margin="0 0 0 10" />
 
             <!-- Datos del cliente -->
             <GroupBox Header="Datos del Cliente" Margin="0,0,0,15">
@@ -37,7 +41,10 @@
 
                     <Label x:Name="PrecioUnitarioLabel" Content="Precio Unitario: $" Margin="0,0,0,10" />
 
-                    <Button Content="Agregar al carrito" Width="150" Click="AgregarProductoAlCarrito" Margin="0,0,0,10" />
+                    <Button Content="➕ Agregar al carrito"
+                            Style="{StaticResource ButtonStyle}"
+                            Width="160"
+                            Click="AgregarProductoAlCarrito" />
 
                 </StackPanel>
             </GroupBox>

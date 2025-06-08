@@ -25,37 +25,56 @@ namespace GestiondeVentaZamira.Views
 
         private void IrAProducto_Click(object sender, RoutedEventArgs e)
         {
-            contenidoContentControl.Content = new Producto();
+
+            //contenidoContentControl.Content = new Producto();
+
+            Producto productoWindow = new Producto();
+            productoWindow.Show();
         }
 
         private void IrAInventario_Click(object sender, RoutedEventArgs e)
         {
-            contenidoContentControl.Content = new Inventario();
+            //contenidoContentControl.Content = new Inventario();
+
+            Inventario inventarioWindow = new Inventario();
+            inventarioWindow.Show();
         }
 
         private void IrAFacturacion_Click(object sender, RoutedEventArgs e)
         {
-            contenidoContentControl.Content = new GestiondeVentaZamira.Views.Facturacion();
+
+            Facturacion facturacionWindow = new Facturacion();
+            facturacionWindow.Show();
+            //contenidoContentControl.Content = new GestiondeVentaZamira.Views.Facturacion();
         }
 
         private void IrANotificaciones_Click(object sender, RoutedEventArgs e)
         {
-            contenidoContentControl.Content = new Notificaciones();
+            //contenidoContentControl.Content = new Notificaciones();
+
+            Notificaciones notificacionesWindow = new Notificaciones();
+            notificacionesWindow.Show();
         }
 
         private void IrASoporte_Click(object sender, RoutedEventArgs e)
         {
-            contenidoContentControl.Content = new Soporte();
+            Soporte soporteWindow = new Soporte();
+            soporteWindow.Show();
+            //contenidoContentControl.Content = new Soporte();
         }
 
         private void IrALogistica_Click(object sender, RoutedEventArgs e)
         {
-            contenidoContentControl.Content = new Logistica();
+            Logistica logisticaWindow = new Logistica();
+            logisticaWindow.Show();
+            //contenidoContentControl.Content = new Logistica();
         }
 
         private void IrAAdmin_Click(object sender, RoutedEventArgs e)
         {
-            contenidoContentControl.Content = new Admin();
+            Admin adminWindow = new Admin();
+            adminWindow.Show();
+            //contenidoContentControl.Content = new Admin();
         }
     }
 }

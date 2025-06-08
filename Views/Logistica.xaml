@@ -1,9 +1,13 @@
 ﻿<Window x:Class="GestiondeVentaZamira.Views.Logistica"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Logística" Height="350" Width="400">
+        Title="Logística" Height="Auto" Width="Auto">
     <Grid Margin="10">
         <StackPanel>
+            <!-- Título -->
+            <TextBlock Style="{StaticResource TextVerde}" Text="🚚 Logistica"
+               FontSize="20" FontWeight="Bold"
+               Margin="0 0 0 10" />
             <TextBlock Text="Número de pedido:"/>
             <TextBox x:Name="campoPedido"/>
 
@@ -12,7 +16,7 @@
 
             <ListBox x:Name="listaEnvios" Height="100" Margin="0,10,0,10"/>
 
-            <Button x:Name="btnProgramar" Content="Programar envío" Click="BtnProgramar_Click" />
+            <Button x:Name="btnProgramar" Content="Programar envío" Click="BtnProgramar_Click" Width="160" Style="{StaticResource ButtonStyle}" />
         </StackPanel>
     </Grid>
 </Window>

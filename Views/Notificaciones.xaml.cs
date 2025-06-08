@@ -3,7 +3,7 @@ using System.Windows.Controls;
 
 namespace GestiondeVentaZamira.Views
 {
-    public partial class Notificaciones : UserControl
+    public partial class Notificaciones : Window
     {
         public Notificaciones()
         {

@@ -40,6 +40,11 @@ namespace GestiondeVentaZamira.Views
             DescripcionProductoTextBox.Clear();
             NombreProductoTextBox.Focus();
         }
+
+        private void NombreProductoTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+
+        }
     }
 }
 
