@@ -1,0 +1,20 @@
+﻿<Window x:Class="GestiondeVentaZamira.Views.VistaPreviaTicket"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Vista Previa del Ticket" Height="400" Width="300"
+        WindowStartupLocation="CenterScreen">
+    <DockPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" DockPanel.Dock="Top">
+            <StackPanel x:Name="TicketContent" Margin="10" />
+        </ScrollViewer>
+
+        <Button Content="🖨️ Imprimir Ticket" Margin="10"
+                HorizontalAlignment="Center"
+                Style="{StaticResource ButtonStyle}"
+                Width="170"
+                Height="30"
+                Padding="10 5"
+                Click="BtnImprimir_Click" />
+    </DockPanel>
+</Window>
+

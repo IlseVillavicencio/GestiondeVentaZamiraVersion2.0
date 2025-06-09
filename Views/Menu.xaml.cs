@@ -34,7 +34,7 @@ namespace GestiondeVentaZamira.Views
                     btnSoporte.Visibility = Visibility.Visible;
                     btnLogistica.Visibility = Visibility.Collapsed;
                     btnAdmin.Visibility = Visibility.Collapsed;
-                    btnCerrarSesion.Visibility = Visibility.Collapsed;
+                    btnCerrarSesion.Visibility = Visibility.Visible;
                     break;
 
                 case "cajero":
@@ -45,7 +45,7 @@ namespace GestiondeVentaZamira.Views
                     btnSoporte.Visibility = Visibility.Collapsed;
                     btnLogistica.Visibility = Visibility.Collapsed;
                     btnAdmin.Visibility = Visibility.Collapsed;
-                    btnCerrarSesion.Visibility = Visibility.Collapsed;
+                    btnCerrarSesion.Visibility = Visibility.Visible;
                     break;
 
                 default:
@@ -57,7 +57,7 @@ namespace GestiondeVentaZamira.Views
                     btnSoporte.Visibility = Visibility.Collapsed;
                     btnLogistica.Visibility = Visibility.Collapsed;
                     btnAdmin.Visibility = Visibility.Collapsed;
-                    btnCerrarSesion.Visibility = Visibility.Collapsed;
+                    btnCerrarSesion.Visibility = Visibility.Visible;
                     break;
             }
         }

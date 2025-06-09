@@ -106,6 +106,42 @@ namespace GestiondeVentaZamira.Views
                 MessageBox.Show("Seleccione una factura para eliminar.");
             }
         }
+
+        private void BtnTicket_Click(object sender, RoutedEventArgs e)
+        {
+            var factura = tablaPedidos.SelectedItem as Factura;
+            if (factura == null)
+            {
+                MessageBox.Show("Selecciona una factura para imprimir el ticket.");
+                return;
+            }
+
+            StackPanel ticketPanel = new StackPanel
+            {
+                Margin = new Thickness(20)
+            };
+
+            ticketPanel.Children.Add(new TextBlock
+            {
+                Text = "🧾 Ticket de Factura",
+                FontSize = 16,
+                FontWeight = FontWeights.Bold,
+                Margin = new Thickness(0, 0, 0, 10),
+                TextAlignment = TextAlignment.Center
+            });
+
+            ticketPanel.Children.Add(new TextBlock { Text = $"ID Pedido: {factura.IdPedido}" });
+            ticketPanel.Children.Add(new TextBlock { Text = $"Cliente: {factura.NombreCliente}" });
+            ticketPanel.Children.Add(new TextBlock { Text = $"Fecha: {factura.FechaPedido}" });
+            ticketPanel.Children.Add(new TextBlock { Text = $"Estado: {factura.Estado}" });
+            ticketPanel.Children.Add(new TextBlock { Text = $"Total: ${factura.Total:F2}" });
+            ticketPanel.Children.Add(new TextBlock { Text = $"Gracias por su compra", Margin = new Thickness(0, 10, 0, 0) });
+
+            // Mostrar vista previa
+            var vistaPrevia = new VistaPreviaTicket(ticketPanel);
+            vistaPrevia.ShowDialog();
+        }
+
     }
 }
 
