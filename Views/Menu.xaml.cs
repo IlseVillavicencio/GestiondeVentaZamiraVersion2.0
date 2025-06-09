@@ -1,83 +1,107 @@
-﻿using GestiondeVentaZamira.Models;
-using GestiondeVentaZamira.Views;
-using System.Windows;
-
-
+﻿using System.Windows;
 using System.Windows.Controls;
 
-// Usa tu namespace correcto aquí
 namespace GestiondeVentaZamira.Views
 {
     public partial class Menu : Window
     {
-        public Menu()
+        // Campo privado para almacenar el rol del usuario
+        private string RolUsuario;
+
+        // Constructor que recibe el rol del usuario
+        public Menu(string rol)
         {
             InitializeComponent();
+            RolUsuario = rol;
+            AplicarVisibilidadPorRol();
+
         }
 
+        // Método que ajusta la visibilidad de los botones según el rol
+        private void AplicarVisibilidadPorRol()
+        {
+            switch (RolUsuario.ToLower())
+            {
+                case "gerentegeneral":
+                    // Todos visibles
+                    break;
+
+                case "gerentesucursal":
+                    btnPedido.Visibility = Visibility.Visible;
+                    btnProducto.Visibility = Visibility.Visible;
+                    btnInventario.Visibility = Visibility.Collapsed;
+                    btnFacturacion.Visibility = Visibility.Visible;
+                    btnSoporte.Visibility = Visibility.Visible;
+                    btnLogistica.Visibility = Visibility.Collapsed;
+                    btnAdmin.Visibility = Visibility.Collapsed;
+                    break;
+
+                case "cajero":
+                    btnPedido.Visibility = Visibility.Visible;
+                    btnProducto.Visibility = Visibility.Collapsed;
+                    btnInventario.Visibility = Visibility.Collapsed;
+                    btnFacturacion.Visibility = Visibility.Visible;
+                    btnSoporte.Visibility = Visibility.Collapsed;
+                    btnLogistica.Visibility = Visibility.Collapsed;
+                    btnAdmin.Visibility = Visibility.Collapsed;
+                    break;
+
+                default:
+                    // Si el rol no es reconocido, ocultar todo
+                    btnPedido.Visibility = Visibility.Collapsed;
+                    btnProducto.Visibility = Visibility.Collapsed;
+                    btnInventario.Visibility = Visibility.Collapsed;
+                    btnFacturacion.Visibility = Visibility.Collapsed;
+                    btnSoporte.Visibility = Visibility.Collapsed;
+                    btnLogistica.Visibility = Visibility.Collapsed;
+                    btnAdmin.Visibility = Visibility.Collapsed;
+                    break;
+            }
+        }
+
+        // Métodos de navegación a las ventanas correspondientes
         private void IrAPedido_Click(object sender, RoutedEventArgs e)
         {
-            Pedido pedidoWindow = new Pedido();
-            pedidoWindow.Show();  // o ShowDialog() si quieres ventana modal
-
-            //contenidoContentControl.Content = new Pedido();
+            new Pedido().Show();
         }
 
         private void IrAProducto_Click(object sender, RoutedEventArgs e)
         {
-
-            //contenidoContentControl.Content = new Producto();
-
-            Producto productoWindow = new Producto();
-            productoWindow.Show();
+            new Producto().Show();
         }
 
         private void IrAInventario_Click(object sender, RoutedEventArgs e)
         {
-            //contenidoContentControl.Content = new Inventario();
-
-            Inventario inventarioWindow = new Inventario();
-            inventarioWindow.Show();
+            new Inventario().Show();
         }
 
         private void IrAFacturacion_Click(object sender, RoutedEventArgs e)
         {
-
-            Facturacion facturacionWindow = new Facturacion();
-            facturacionWindow.Show();
-            //contenidoContentControl.Content = new GestiondeVentaZamira.Views.Facturacion();
+            new Facturacion().Show();
         }
 
         private void IrANotificaciones_Click(object sender, RoutedEventArgs e)
         {
-            //contenidoContentControl.Content = new Notificaciones();
-
-            Notificaciones notificacionesWindow = new Notificaciones();
-            notificacionesWindow.Show();
+            new Notificaciones().Show();
         }
 
         private void IrASoporte_Click(object sender, RoutedEventArgs e)
         {
-            Soporte soporteWindow = new Soporte();
-            soporteWindow.Show();
-            //contenidoContentControl.Content = new Soporte();
+            new Soporte().Show();
         }
 
         private void IrALogistica_Click(object sender, RoutedEventArgs e)
         {
-            Logistica logisticaWindow = new Logistica();
-            logisticaWindow.Show();
-            //contenidoContentControl.Content = new Logistica();
+            new Logistica().Show();
         }
 
         private void IrAAdmin_Click(object sender, RoutedEventArgs e)
         {
-            Admin adminWindow = new Admin();
-            adminWindow.Show();
-            //contenidoContentControl.Content = new Admin();
+            new Admin().Show();
         }
     }
 }
+
 
 
 

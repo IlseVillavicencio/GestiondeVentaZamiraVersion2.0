@@ -10,8 +10,22 @@
             <TextBlock Style="{StaticResource TextLila}" Text="📦 Inventario"
    FontSize="20" FontWeight="Bold"
    Margin="0 0 0 10" />
-        
-        <DataGrid x:Name="inventarioDataGrid"
+
+            <!-- Botones -->
+            <WrapPanel Margin="0,0,0,10" HorizontalAlignment="Left">
+                <Button x:Name="btnProductos" Content="Imprimir listado"
+                        Width="120" Margin="0,0,10,0"
+                        Style="{StaticResource ButtonStyle}" />
+                <Button x:Name="btnEditarProductos" Content="Editar Productos"
+                        Width="140" Margin="0,0,10,0"
+                        Style="{StaticResource ButtonStyle}" />
+                <Button x:Name="btnCorteCaja" Content="Corte de Caja"
+                        Width="140" Margin="0,0,10,0"
+                        Style="{StaticResource ButtonStyle}"/>
+            </WrapPanel>
+
+
+            <DataGrid x:Name="inventarioDataGrid"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
                   IsReadOnly="False"

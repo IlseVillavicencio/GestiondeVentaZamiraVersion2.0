@@ -32,10 +32,10 @@
                     <TextBox x:Name="campoNombre" Width="150" ToolTip="Nombre del usuario"/>
                 </StackPanel>
 
-                <!-- Correo -->
+                <!-- Contraseña -->
                 <StackPanel Margin="0,0,10,0">
-                    <TextBlock Text="Correo" Margin="0,0,0,2"/>
-                    <TextBox x:Name="campoCorreo" Width="180" ToolTip="Correo electrónico"/>
+                    <TextBlock Text="Contraseña" Margin="0,0,0,2"/>
+                    <PasswordBox x:Name="campoContrasena" Width="140" ToolTip="Contraseña"/>
                 </StackPanel>
 
                 <!-- Rol -->
@@ -44,10 +44,10 @@
                     <TextBox x:Name="campoRol" Width="120" ToolTip="Rol del usuario"/>
                 </StackPanel>
 
-                <!-- Contraseña -->
+                <!-- Rol -->
                 <StackPanel Margin="0,0,10,0">
-                    <TextBlock Text="Contraseña" Margin="0,0,0,2"/>
-                    <PasswordBox x:Name="campoContrasena" Width="140" ToolTip="Contraseña"/>
+                    <TextBlock Text="Sucursal" Margin="0,0,0,2"/>
+                    <TextBox x:Name="campoSucursal" Width="120" ToolTip="Rol del usuario"/>
                 </StackPanel>
 
                 <!-- Botón Agregar -->
@@ -55,7 +55,18 @@
                         Content="Agregar"
                         Width="100"
                         Margin="0,22,0,0"
-                        Click="btnAgregar_Click"/>
+                        Click="btnAgregar_Click"
+                        Style="{StaticResource ButtonStyle}"/>
+  
+
+            </WrapPanel>
+
+            <WrapPanel Margin="0,0,0,10" HorizontalAlignment="Left">
+                
+                <Button x:Name="btnPlantillaPersonal" Content="Plantilla Personal" Width="130"
+            Margin="0,0,10,0" Style="{StaticResource ButtonStyle}" />
+                <Button x:Name="btnEditarPlantilla" Content="Editar Plantilla" Width="130"
+            Margin="0,0,10,0" Style="{StaticResource ButtonStyle}" />
             </WrapPanel>
 
             <!-- Tabla de usuarios -->

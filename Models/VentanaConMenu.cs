@@ -8,12 +8,12 @@ using System.Windows;
 
 public class VentanaConMenu : Window
 {
-    public VentanaConMenu()
+    public VentanaConMenu(string rol) // Constructor con parámetro
     {
         this.Title = "Menú principal";
         this.Width = 800;
         this.Height = 600;
 
-        this.Content = new Menu(); // Tu UserControl
+        this.Content = new Menu(rol); // Se pasa el parámetro recibido
     }
 }

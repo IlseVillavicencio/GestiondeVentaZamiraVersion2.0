@@ -22,12 +22,11 @@ namespace GestiondeVentaZamira.Views
             {
                 int id = int.Parse(campoId.Text.Trim());
                 string nombre = campoNombre.Text.Trim();
-                string correo = campoCorreo.Text.Trim();
                 string rol = campoRol.Text.Trim();
                 string contrasena = campoContrasena.Password.Trim();
+                string sucursal = campoSucursal.Text.Trim();
 
-                if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(correo) ||
-                    string.IsNullOrEmpty(rol) || string.IsNullOrEmpty(contrasena))
+                if (string.IsNullOrEmpty(rol) || string.IsNullOrEmpty(contrasena) || string.IsNullOrEmpty(sucursal))
                 {
                     MessageBox.Show("Todos los campos deben estar llenos.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
@@ -44,15 +43,15 @@ namespace GestiondeVentaZamira.Views
                 }
 
                 // Crear el nuevo usuario
-                Usuario nuevoUsuario = new Usuario(id, nombre, correo, rol, contrasena);
+                Usuario nuevoUsuario = new Usuario(id, nombre, rol, contrasena, sucursal);
                 usuarios.Add(nuevoUsuario);
 
                 // Limpiar campos
                 campoId.Clear();
                 campoNombre.Clear();
-                campoCorreo.Clear();
                 campoRol.Clear();
                 campoContrasena.Clear();
+                campoSucursal.Clear();
             }
             catch (FormatException)
             {
@@ -65,4 +64,5 @@ namespace GestiondeVentaZamira.Views
         }
     }
 }
+
 

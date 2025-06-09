@@ -47,13 +47,13 @@
     <DockPanel>
         <!-- Menú superior con botones -->
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#EEE" HorizontalAlignment="Center" Margin="0,10">
-            <Button Content="📦 Pedido" Style="{StaticResource ButtonStyle}" Click="IrAPedido_Click"/>
-            <Button Content="🛒 Productos" Style="{StaticResource ButtonStyle}" Click="IrAProducto_Click"/>
-            <Button Content="📦 Inventario" Style="{StaticResource ButtonStyle}" Click="IrAInventario_Click"/>
-            <Button Content="💰 Facturación" Style="{StaticResource ButtonStyle}" Click="IrANotificaciones_Click"/>
-            <Button Content="🛠 Soporte" Style="{StaticResource ButtonStyle}" Click="IrASoporte_Click"/>
-            <Button Content="🚚 Logística" Style="{StaticResource ButtonStyle}" Click="IrALogistica_Click"/>
-            <Button Content="👑 Admin" Style="{StaticResource ButtonStyle}" Click="IrAAdmin_Click"/>
+            <Button x:Name="btnPedido" Content="📦 Pedido" Style="{StaticResource ButtonStyle}" Click="IrAPedido_Click"/>
+            <Button x:Name="btnProducto" Content="🛒 Productos" Style="{StaticResource ButtonStyle}" Click="IrAProducto_Click"/>
+            <Button x:Name="btnInventario" Content="📦 Inventario" Style="{StaticResource ButtonStyle}" Click="IrAInventario_Click"/>
+            <Button x:Name="btnFacturacion" Content="💰 Facturación" Style="{StaticResource ButtonStyle}" Click="IrAFacturacion_Click"/>
+            <Button x:Name="btnSoporte" Content="🛠 Soporte" Style="{StaticResource ButtonStyle}" Click="IrASoporte_Click"/>
+            <Button x:Name="btnLogistica" Content="🚚 Logística" Style="{StaticResource ButtonStyle}" Click="IrALogistica_Click"/>
+            <Button x:Name="btnAdmin" Content="👑 Admin" Style="{StaticResource ButtonStyle}" Click="IrAAdmin_Click"/>
         </StackPanel>
 
         <!-- ContentControl para cargar vistas dinámicas -->

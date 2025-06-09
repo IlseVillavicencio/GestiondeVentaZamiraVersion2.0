@@ -19,7 +19,9 @@
                 <Button x:Name="btnNuevaFactura" Content="Nueva Factura" Width="120" Margin="0,0,10,0" Style="{StaticResource ButtonStyle}" />
                 <Button x:Name="btnVerDetalles" Content="Ver Detalles" Width="120" Margin="0,0,10,0" Style="{StaticResource ButtonStyle}" />
                 <Button x:Name="btnEliminar" Content="Eliminar" Width="120" Style="{StaticResource ButtonStyle}" />
-        </StackPanel>
+                <Button x:Name="btnReporteOperaciones" Content="Reporte de Operaciones" Width="120" Margin="0,0,10,0" Style="{StaticResource ButtonStyle}" />
+                <Button x:Name="btnTicket" Content="Imprimir Ticket" Width="120" Margin="0,0,10,0" Style="{StaticResource ButtonStyle}" />
+            </StackPanel>
 
         <DataGrid x:Name="tablaFacturas" Grid.Row="1" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>

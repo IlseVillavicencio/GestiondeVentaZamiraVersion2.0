@@ -57,8 +57,9 @@ namespace GestiondeVentaZamira.Views
 
                         MessageBox.Show("Inicio de sesión exitoso como: " + u.Rol, "Éxito");
 
-                        GestiondeVentaZamira.Views.Menu ventanaMenu = new GestiondeVentaZamira.Views.Menu();
-                        ventanaMenu.Show();
+
+                        Menu VentanaCpnMenu = new Menu(u.Rol); // ✅
+                        VentanaCpnMenu.Show();
                         this.Close();
                     }
                     else

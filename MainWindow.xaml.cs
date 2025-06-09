@@ -21,9 +21,9 @@ namespace GestiondeVentaZamira
         }
 
         // Método para cambiar de vista
-        public void MostrarMenuPrincipal()
+        public void MostrarMenuPrincipal(string rol)
         {
-            MainContent.Content = new VentanaConMenu(); // Reemplaza el contenido
+            MainContent.Content = new VentanaConMenu(rol);
         }
 
 
