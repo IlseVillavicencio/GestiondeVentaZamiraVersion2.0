@@ -9,18 +9,24 @@ namespace GestiondeVentaZamira.Models
     public class Usuario
     {
         public int IdUsuario { get; set; }
-        public string Nombre { get; set; } = string.Empty;
-        public string Correo { get; set; } = string.Empty;
+        
+        public string NombreUsuario = string.Empty;
+        public string Contrasena { get; set; } = string.Empty;
         public string Rol { get; set; } = string.Empty;
+        public string Sucursal { get; set; } = string.Empty;
 
         // Constructor vacío
         public Usuario() { }
 
         // Constructor con parámetros
-        public Usuario(int idUsuario, string nombre)
+        public Usuario(int idUsuario, string nombreUsuario, string contrasena, string rol, string sucursal)
         {
             IdUsuario = idUsuario;
-            Nombre = nombre;
+            NombreUsuario = nombreUsuario;
+            Contrasena = contrasena;
+            Rol = rol;
+            Sucursal = sucursal;
+
         }
     }
 }

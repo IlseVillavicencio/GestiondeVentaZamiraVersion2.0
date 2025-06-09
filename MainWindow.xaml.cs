@@ -16,15 +16,14 @@ namespace GestiondeVentaZamira
         public MainWindow()
         {
             InitializeComponent();
-            var pedido = new Pedido(); // Pedido debe heredar de UserControl correctamente
+            MainContent.Content = new Login(this); // Pedido debe heredar de UserControl correctamente
 
         }
 
-        // Cargar la vista inicial "Pedido" en el ContentControl
-        private void AbrirVentanaPedido_Click(object sender, RoutedEventArgs e)
+        // Método para cambiar de vista
+        public void MostrarMenuPrincipal()
         {
-            var ventanaPedido = new Views.Pedido(); // Clase tipo Window
-            ventanaPedido.Show();
+            MainContent.Content = new VentanaConMenu(); // Reemplaza el contenido
         }
 
 

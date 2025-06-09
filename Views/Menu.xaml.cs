@@ -8,7 +8,7 @@ using System.Windows.Controls;
 // Usa tu namespace correcto aquí
 namespace GestiondeVentaZamira.Views
 {
-    public partial class Menu : UserControl
+    public partial class Menu : Window
     {
         public Menu()
         {

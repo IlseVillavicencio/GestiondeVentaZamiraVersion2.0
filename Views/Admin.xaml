@@ -18,42 +18,59 @@
                        Margin="0 0 0 10" />
 
             <!-- Campos de entrada -->
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Left">
+            <WrapPanel Margin="0,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Top">
 
-                <StackPanel>
-                    <TextBlock Text="ID del usuario"
-                               FontWeight="Normal"
-                               Margin="0,0,0,2"/>
-                    <TextBox x:Name="campoId"
-                             Width="100"
-                             ToolTip="ID del usuario"/>
+                <!-- ID -->
+                <StackPanel Margin="0,0,10,0">
+                    <TextBlock Text="ID del usuario" Margin="0,0,0,2"/>
+                    <TextBox x:Name="campoId" Width="100" ToolTip="ID del usuario"/>
                 </StackPanel>
 
-                <StackPanel Margin="10,0,10,0">
-                    <TextBlock Text="Nombre del usuario"
-                               FontWeight="Normal"
-                               Margin="0,0,0,2"/>
-                    <TextBox x:Name="campoNombre"
-                             Width="200"
-                             ToolTip="Nombre del usuario"/>
+                <!-- Nombre -->
+                <StackPanel Margin="0,0,10,0">
+                    <TextBlock Text="Nombre" Margin="0,0,0,2"/>
+                    <TextBox x:Name="campoNombre" Width="150" ToolTip="Nombre del usuario"/>
                 </StackPanel>
 
+                <!-- Correo -->
+                <StackPanel Margin="0,0,10,0">
+                    <TextBlock Text="Correo" Margin="0,0,0,2"/>
+                    <TextBox x:Name="campoCorreo" Width="180" ToolTip="Correo electrónico"/>
+                </StackPanel>
+
+                <!-- Rol -->
+                <StackPanel Margin="0,0,10,0">
+                    <TextBlock Text="Rol" Margin="0,0,0,2"/>
+                    <TextBox x:Name="campoRol" Width="120" ToolTip="Rol del usuario"/>
+                </StackPanel>
+
+                <!-- Contraseña -->
+                <StackPanel Margin="0,0,10,0">
+                    <TextBlock Text="Contraseña" Margin="0,0,0,2"/>
+                    <PasswordBox x:Name="campoContrasena" Width="140" ToolTip="Contraseña"/>
+                </StackPanel>
+
+                <!-- Botón Agregar -->
                 <Button x:Name="btnAgregar"
                         Content="Agregar"
-                        Width="160"
-                        VerticalAlignment="Bottom"
-                        Style="{StaticResource ButtonStyle}"
-                        Click="btnAgregar_Click" />
-            </StackPanel>
+                        Width="100"
+                        Margin="0,22,0,0"
+                        Click="btnAgregar_Click"/>
+            </WrapPanel>
 
             <!-- Tabla de usuarios -->
             <DataGrid x:Name="tablaUsuarios"
                       Grid.Row="1"
                       AutoGenerateColumns="False"
-                      CanUserAddRows="False">
+                      CanUserAddRows="False"
+                      IsReadOnly="True"
+                      Height="300">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Binding="{Binding IdUsuario}" Width="100"/>
-                    <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="*"/>
+                    <DataGridTextColumn Header="ID" Binding="{Binding IdUsuario}" Width="50"/>
+                    <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="150"/>
+                    <DataGridTextColumn Header="Correo" Binding="{Binding Correo}" Width="200"/>
+                    <DataGridTextColumn Header="Rol" Binding="{Binding Rol}" Width="100"/>
+                    <DataGridTextColumn Header="Contraseña" Binding="{Binding Contrasena}" Width="150"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
