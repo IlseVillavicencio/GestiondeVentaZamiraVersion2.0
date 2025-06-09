@@ -34,6 +34,7 @@ namespace GestiondeVentaZamira.Views
                     btnSoporte.Visibility = Visibility.Visible;
                     btnLogistica.Visibility = Visibility.Collapsed;
                     btnAdmin.Visibility = Visibility.Collapsed;
+                    btnCerrarSesion.Visibility = Visibility.Collapsed;
                     break;
 
                 case "cajero":
@@ -44,6 +45,7 @@ namespace GestiondeVentaZamira.Views
                     btnSoporte.Visibility = Visibility.Collapsed;
                     btnLogistica.Visibility = Visibility.Collapsed;
                     btnAdmin.Visibility = Visibility.Collapsed;
+                    btnCerrarSesion.Visibility = Visibility.Collapsed;
                     break;
 
                 default:
@@ -55,7 +57,24 @@ namespace GestiondeVentaZamira.Views
                     btnSoporte.Visibility = Visibility.Collapsed;
                     btnLogistica.Visibility = Visibility.Collapsed;
                     btnAdmin.Visibility = Visibility.Collapsed;
+                    btnCerrarSesion.Visibility = Visibility.Collapsed;
                     break;
+            }
+        }
+
+        private void CerrarSesion_Click(object sender, RoutedEventArgs e)
+        {
+            // Mostrar mensaje de confirmación
+            MessageBoxResult result = MessageBox.Show("¿Estás seguro de que deseas cerrar sesión?", "Confirmar cierre de sesión", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                // Abrir ventana de login
+                var loginWindow = new Login();
+                loginWindow.Show();
+
+                // Cerrar la ventana actual
+                this.Close();
             }
         }
 

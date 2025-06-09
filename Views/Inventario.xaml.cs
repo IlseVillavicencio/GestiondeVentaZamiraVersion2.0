@@ -1,61 +1,51 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using MySql.Data.MySqlClient;
+using GestiondeVentaZamira.Models;
 
 namespace GestiondeVentaZamira.Views
 {
     public partial class Inventario : Window
     {
         private ObservableCollection<ProductoStock> productos;
-        private MySqlConnection? connection;
+
+        // Aquí está tu cadena de conexión
+        private string connectionString = "server=127.0.0.1;port=3306;user=root;password=12345;database=sistemaventazamira;";
 
         public Inventario()
         {
             InitializeComponent();
             productos = new ObservableCollection<ProductoStock>();
             inventarioDataGrid.ItemsSource = productos;
-        }
-
-        public void SetConnection(MySqlConnection connection)
-        {
-            this.connection = connection;
-            CargarDatos();
+            CargarDatos(); // Ya puedes llamar directamente
         }
 
         private void CargarDatos()
         {
-            if (connection == null)
-            {
-                MessageBox.Show("La conexión a la base de datos no ha sido inicializada.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
             productos.Clear();
 
-            string sql = @"
-                SELECT p.id_producto, p.nombre_producto,
-                IFNULL(SUM(CASE WHEN i.tipo_movimiento = 'entrada' THEN i.cantidad ELSE 0 END),0) - 
-                IFNULL(SUM(CASE WHEN i.tipo_movimiento = 'salida' THEN i.cantidad ELSE 0 END),0) AS stock_actual
-                FROM producto p
-                LEFT JOIN inventario i ON p.id_producto = i.id_producto
-                GROUP BY p.id_producto, p.nombre_producto";
+            string sql = "SELECT id_producto, nombre, descripcion, precio, stock FROM PRODUCTO";
 
             try
             {
-                using (MySqlCommand cmd = new MySqlCommand(sql, connection))
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
+                    connection.Open();
+
+                    using (MySqlCommand cmd = new MySqlCommand(sql, connection))
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
                             int id = reader.GetInt32("id_producto");
-                            string nombre = reader.GetString("nombre_producto");
-                            int stock = reader.GetInt32("stock_actual");
+                            string nombre = reader.GetString("nombre");
+                            string descripcion = reader.GetString("descripcion");
+                            decimal precio = reader.GetDecimal("precio");
+                            int stock = reader.GetInt32("stock");
 
-                            productos.Add(new ProductoStock(id, nombre, stock));
+                            productos.Add(new ProductoStock(id, nombre, descripcion, precio, stock));
                         }
                     }
                 }
@@ -77,15 +67,10 @@ namespace GestiondeVentaZamira.Views
             {
                 if (int.TryParse(textBox.Text, out int nuevoStock))
                 {
-                    int stockAnterior = row.StockActual;
-                    if (nuevoStock != stockAnterior)
+                    if (nuevoStock != row.Stock)
                     {
-                        int diferencia = nuevoStock - stockAnterior;
-                        string tipoMovimiento = diferencia > 0 ? "entrada" : "salida";
-                        int cantidadMovimiento = Math.Abs(diferencia);
-
-                        InsertarMovimiento(row.IdProducto, tipoMovimiento, cantidadMovimiento);
-                        row.StockActual = nuevoStock;
+                        ActualizarStock(row.IdProducto, nuevoStock);
+                        row.Stock = nuevoStock;
                     }
                 }
                 else
@@ -96,65 +81,81 @@ namespace GestiondeVentaZamira.Views
             }
         }
 
-        private void InsertarMovimiento(int idProducto, string tipoMovimiento, int cantidad)
+        private void ActualizarStock(int idProducto, int nuevoStock)
         {
-            if (connection == null)
-            {
-                MessageBox.Show("No hay conexión a la base de datos para insertar movimiento.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            string sql = "INSERT INTO inventario (id_producto, tipo_movimiento, cantidad, fecha) VALUES (@idProducto, @tipoMovimiento, @cantidad, CURRENT_TIMESTAMP)";
+            string sql = "UPDATE PRODUCTO SET stock = @nuevoStock WHERE id_producto = @idProducto";
 
             try
             {
-                using (MySqlCommand cmd = new MySqlCommand(sql, connection))
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
-                    cmd.Parameters.AddWithValue("@idProducto", idProducto);
-                    cmd.Parameters.AddWithValue("@tipoMovimiento", tipoMovimiento);
-                    cmd.Parameters.AddWithValue("@cantidad", cantidad);
+                    connection.Open();
 
-                    cmd.ExecuteNonQuery();
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        using (MySqlCommand cmd = new MySqlCommand(sql, connection, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@nuevoStock", nuevoStock);
+                            cmd.Parameters.AddWithValue("@idProducto", idProducto);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        transaction.Commit();
+                    }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al insertar movimiento: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Error al actualizar el stock: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-    }
 
-    public class ProductoStock : INotifyPropertyChanged
-    {
-        public int IdProducto { get; }
-
-        public string NombreProducto { get; }
-
-        private int stockActual;
-        public int StockActual
+        private void ActualizarProducto(ProductoStock producto)
         {
-            get => stockActual;
-            set
+            string sql = "UPDATE PRODUCTO SET nombre = @nombre, stock = @stock WHERE id_producto = @idProducto";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                if (stockActual != value)
+                connection.Open();
+
+                using (var transaction = connection.BeginTransaction())
                 {
-                    stockActual = value;
-                    OnPropertyChanged(nameof(StockActual));
+                    using (MySqlCommand cmd = new MySqlCommand(sql, connection, transaction))
+                    {
+                        cmd.Parameters.AddWithValue("@nombre", producto.Nombre);
+                        cmd.Parameters.AddWithValue("@stock", producto.Stock);
+                        cmd.Parameters.AddWithValue("@idProducto", producto.IdProducto);
+
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    transaction.Commit();
                 }
             }
         }
 
-        public ProductoStock(int idProducto, string nombreProducto, int stockActual)
+        private void BtnEditarProductos_Click(object sender, RoutedEventArgs e)
         {
-            IdProducto = idProducto;
-            NombreProducto = nombreProducto;
-            StockActual = stockActual;
+            if (inventarioDataGrid.SelectedItem is ProductoStock productoSeleccionado)
+            {
+                try
+                {
+                    ActualizarProducto(productoSeleccionado);
+                    MessageBox.Show("Producto actualizado correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al actualizar el producto: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un producto para editar.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected void OnPropertyChanged(string propertyName) =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
+
+
 
 

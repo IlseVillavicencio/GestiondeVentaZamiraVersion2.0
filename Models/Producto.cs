@@ -1,18 +1,34 @@
-﻿namespace GestiondeVentaZamira.Models
+﻿using System.ComponentModel;
+
+namespace GestiondeVentaZamira.Models
 {
     public class Producto
     {
-        public int Id { get; set; }
-        public string Nombre { get; set; }
-        public double Precio { get; set; }
-        public override string ToString() => Nombre;
+        public int Id { get; }
+        public string Nombre { get; }
+        public string Descripcion { get; }
+        public decimal Precio { get; }
+        public int Stock { get; }
 
-        public Producto(int id_producto, string nombre, double precio)
+        // Constructor alternativo más flexible
+        public Producto(int id, string nombre, decimal precio)
         {
-            Id = id_producto;
+            Id = id;
             Nombre = nombre;
+            Descripcion = "";
             Precio = precio;
+            Stock = 0;
+        }
+
+        // Constructor completo
+        public Producto(int id, string nombre, string descripcion, decimal precio, int stock)
+        {
+            Id = id;
+            Nombre = nombre;
+            Descripcion = descripcion;
+            Precio = precio;
+            Stock = stock;
         }
     }
 }
-
+       

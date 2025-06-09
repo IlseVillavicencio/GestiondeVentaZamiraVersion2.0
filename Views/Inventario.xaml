@@ -18,6 +18,7 @@
                         Style="{StaticResource ButtonStyle}" />
                 <Button x:Name="btnEditarProductos" Content="Editar Productos"
                         Width="140" Margin="0,0,10,0"
+                        Click="BtnEditarProductos_Click"
                         Style="{StaticResource ButtonStyle}" />
                 <Button x:Name="btnCorteCaja" Content="Corte de Caja"
                         Width="140" Margin="0,0,10,0"
@@ -31,14 +32,12 @@
                   IsReadOnly="False"
                   CellEditEnding="InventarioDataGrid_CellEditEnding">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Producto"
-                                    Binding="{Binding NombreProducto}"
-                                    IsReadOnly="True"
-                                    Width="*"/>
-                <DataGridTextColumn Header="Stock"
-                                    Binding="{Binding StockActual, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    Width="100" />
-            </DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding IdProducto}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" IsReadOnly="False"/>
+                        <DataGridTextColumn Header="Descripción" Binding="{Binding Descripcion}" IsReadOnly="False"/>
+                        <DataGridTextColumn Header="Precio" Binding="{Binding Precio}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Stock" Binding="{Binding Stock}"  IsReadOnly="False" />
+                </DataGrid.Columns>
         </DataGrid>
         </StackPanel>
     </Grid>

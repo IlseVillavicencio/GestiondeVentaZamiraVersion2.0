@@ -54,6 +54,7 @@
             <Button x:Name="btnSoporte" Content="🛠 Soporte" Style="{StaticResource ButtonStyle}" Click="IrASoporte_Click"/>
             <Button x:Name="btnLogistica" Content="🚚 Logística" Style="{StaticResource ButtonStyle}" Click="IrALogistica_Click"/>
             <Button x:Name="btnAdmin" Content="👑 Admin" Style="{StaticResource ButtonStyle}" Click="IrAAdmin_Click"/>
+            <Button x:Name="btnCerrarSesion" Content="🔒 Cerrar Sesión" Style="{StaticResource ButtonStyle}" Click="CerrarSesion_Click"/>
         </StackPanel>
 
         <!-- ContentControl para cargar vistas dinámicas -->

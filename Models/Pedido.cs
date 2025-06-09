@@ -1,4 +1,4 @@
-﻿using GestiondeVentaZamira.Models;
+﻿ using GestiondeVentaZamira.Models;
 using System;
 using System.Collections.Generic;
 
@@ -6,9 +6,6 @@ namespace GestiondeVentaZamiraa.Models
 {
     public class Pedido
     {
-
-        
-
         public int IdPedido { get; set; }
         public int IdCliente{ get; set; }
         public DateTime Fecha { get; set; }

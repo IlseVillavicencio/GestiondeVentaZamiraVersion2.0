@@ -31,7 +31,7 @@ namespace GestiondeVentaZamira.Models
                             {
                                 int idProducto = reader.GetInt32("id_producto");
                                 string nombre = reader.GetString("nombre");
-                                double precio = reader.GetDouble("precio");
+                                decimal precio = reader.GetDecimal("precio");
 
                                 productos.Add(new Producto(idProducto, nombre, precio));
                             }
@@ -103,7 +103,7 @@ namespace GestiondeVentaZamira.Models
                             if (reader.Read())
                             {
                                 int idProducto = reader.GetInt32("id_producto");
-                                double precio = reader.GetDouble("precio");
+                                decimal precio = reader.GetDecimal("precio");
                                 return new Producto(idProducto, nombre, precio);
                             }
                         }

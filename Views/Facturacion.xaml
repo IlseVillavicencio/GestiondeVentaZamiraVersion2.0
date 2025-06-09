@@ -18,17 +18,19 @@
 
                 <Button x:Name="btnNuevaFactura" Content="Nueva Factura" Width="120" Margin="0,0,10,0" Style="{StaticResource ButtonStyle}" />
                 <Button x:Name="btnVerDetalles" Content="Ver Detalles" Width="120" Margin="0,0,10,0" Style="{StaticResource ButtonStyle}" />
-                <Button x:Name="btnEliminar" Content="Eliminar" Width="120" Style="{StaticResource ButtonStyle}" />
-                <Button x:Name="btnReporteOperaciones" Content="Reporte de Operaciones" Width="120" Margin="0,0,10,0" Style="{StaticResource ButtonStyle}" />
+                <Button x:Name="btnEliminar" Content="Eliminar" Width="120" Margin="0,0,10,0" Style="{StaticResource ButtonStyle}" />
+                <Button x:Name="btnReporteOperaciones" Content="Reporte de Operaciones" Width="170" Margin="0,0,10,0" Style="{StaticResource ButtonStyle}" />
                 <Button x:Name="btnTicket" Content="Imprimir Ticket" Width="120" Margin="0,0,10,0" Style="{StaticResource ButtonStyle}" />
             </StackPanel>
 
-        <DataGrid x:Name="tablaFacturas" Grid.Row="1" AutoGenerateColumns="False" CanUserAddRows="False">
+        <DataGrid x:Name="tablaPedidos" Grid.Row="1" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="80"/>
-                <DataGridTextColumn Header="Cliente" Binding="{Binding Cliente}" Width="*"/>
-                <DataGridTextColumn Header="Total" Binding="{Binding Total}" Width="100" />
-            </DataGrid.Columns>
+                    <DataGridTextColumn Header="ID Pedido" Binding="{Binding IdPedido}" Width="80"/>
+                    <DataGridTextColumn Header="Cliente" Binding="{Binding NombreCliente}" Width="*"/>
+                    <DataGridTextColumn Header="Fecha" Binding="{Binding FechaPedido}" Width="120"/>
+                    <DataGridTextColumn Header="Estado" Binding="{Binding Estado}" Width="120"/>
+                    <DataGridTextColumn Header="Total" Binding="{Binding Total}" Width="100"/>
+                </DataGrid.Columns>
         </DataGrid>
         </StackPanel>
     </Grid>

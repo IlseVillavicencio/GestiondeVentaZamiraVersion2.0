@@ -78,10 +78,9 @@
                       Height="300">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Binding="{Binding IdUsuario}" Width="50"/>
-                    <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="150"/>
-                    <DataGridTextColumn Header="Correo" Binding="{Binding Correo}" Width="200"/>
+                    <DataGridTextColumn Header="Usuario" Binding="{Binding NombreUsuario}" Width="*"/>
                     <DataGridTextColumn Header="Rol" Binding="{Binding Rol}" Width="100"/>
-                    <DataGridTextColumn Header="Contraseña" Binding="{Binding Contrasena}" Width="150"/>
+                    <DataGridTextColumn Header="Sucursal" Binding="{Binding Sucursal}" Width="100"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>

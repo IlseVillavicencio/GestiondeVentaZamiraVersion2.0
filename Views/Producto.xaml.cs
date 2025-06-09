@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Windows;
+using MySql.Data.MySqlClient;
 
 namespace GestiondeVentaZamira.Views
 {
     public partial class Producto : Window
     {
+        // ✅ Cadena de conexión (ajusta según tu configuración)
+        private string connectionString = "server=127.0.0.1;port=3306;user=root;password=12345;database=sistemaventazamira;";
+
         public Producto()
         {
             InitializeComponent();
@@ -16,6 +20,7 @@ namespace GestiondeVentaZamira.Views
             string precioTexto = PrecioProductoTextBox.Text.Trim();
             string descripcion = DescripcionProductoTextBox.Text.Trim();
 
+            // ✅ Validaciones
             if (string.IsNullOrEmpty(nombre))
             {
                 MessageBox.Show("Por favor, ingresa el nombre del producto.", "Validación", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -30,20 +35,43 @@ namespace GestiondeVentaZamira.Views
                 return;
             }
 
-            // Aquí agregas la lógica para guardar el producto...
+            // ✅ Guardar producto en la base de datos
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
 
-            MessageBox.Show($"Producto '{nombre}' guardado correctamente.\nPrecio: {precio:C}\nDescripción: {descripcion}",
-                "Producto Guardado", MessageBoxButton.OK, MessageBoxImage.Information);
+                    string sql = "INSERT INTO PRODUCTO (nombre, precio, descripcion, stock) VALUES (@nombre, @precio, @descripcion, @stock)";
+                    using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@nombre", nombre);
+                        cmd.Parameters.AddWithValue("@precio", precio);
+                        cmd.Parameters.AddWithValue("@descripcion", descripcion);
+                        cmd.Parameters.AddWithValue("@stock", 0); // Puedes cambiarlo si luego agregas campo para stock
 
-            NombreProductoTextBox.Clear();
-            PrecioProductoTextBox.Clear();
-            DescripcionProductoTextBox.Clear();
-            NombreProductoTextBox.Focus();
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show($"Producto '{nombre}' guardado correctamente.\nPrecio: {precio:C}\nDescripción: {descripcion}",
+                        "Producto Guardado", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    // Limpiar los campos
+                    NombreProductoTextBox.Clear();
+                    PrecioProductoTextBox.Clear();
+                    DescripcionProductoTextBox.Clear();
+                    NombreProductoTextBox.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al guardar el producto: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void NombreProductoTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-
+            // Puedes usar esto para validaciones en tiempo real si deseas
         }
     }
 }
