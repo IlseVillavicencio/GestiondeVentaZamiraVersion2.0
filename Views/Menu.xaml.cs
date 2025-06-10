@@ -22,14 +22,21 @@ namespace GestiondeVentaZamira.Views
         {
             switch (RolUsuario.ToLower())
             {
-                case "gerentegeneral":
-                    // Todos visibles
+                case "gerente general":
+                    btnPedido.Visibility = Visibility.Collapsed;
+                    btnProducto.Visibility = Visibility.Collapsed;
+                    btnInventario.Visibility = Visibility.Collapsed;
+                    btnFacturacion.Visibility = Visibility.Collapsed;
+                    btnSoporte.Visibility = Visibility.Visible;
+                    btnLogistica.Visibility = Visibility.Visible;
+                    btnAdmin.Visibility = Visibility.Visible;
+                    btnCerrarSesion.Visibility = Visibility.Visible;
                     break;
 
-                case "gerentesucursal":
-                    btnPedido.Visibility = Visibility.Visible;
+                case "gerente sucursal":
+                    btnPedido.Visibility = Visibility.Collapsed;
                     btnProducto.Visibility = Visibility.Visible;
-                    btnInventario.Visibility = Visibility.Collapsed;
+                    btnInventario.Visibility = Visibility.Visible;
                     btnFacturacion.Visibility = Visibility.Visible;
                     btnSoporte.Visibility = Visibility.Visible;
                     btnLogistica.Visibility = Visibility.Collapsed;

@@ -6,7 +6,7 @@ namespace GestiondeVentaZamira.Models
 {
     public static class ConexionDB
     {
-        private const string ConnectionString = "server=127.0.0.1;port=3306;user=root;password=12345;database=sistemaventazamira;";
+        private const string ConnectionString = "server=yamabiko.proxy.rlwy.net;port=34163;user=root;password=sFrdysrDfZtahYVhsdyzhNsKECijredS;database=railway;";
 
         public static MySqlConnection? Conectar()
         {

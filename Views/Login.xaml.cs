@@ -32,11 +32,11 @@ namespace GestiondeVentaZamira.Views
 
             try
             {
-                string connectionString = "server=127.0.0.1;port=3306;user=root;password=12345;database=sistemaventazamira;";
+                string connectionString = "server=yamabiko.proxy.rlwy.net;port=34163;user=root;password=sFrdysrDfZtahYVhsdyzhNsKECijredS;database=railway;";
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "SELECT * FROM Usuarios WHERE NombreUsuario = @usuario AND Contrasena = @contrasena";
+                    string query = "SELECT * FROM USUARIOS WHERE NombreUsuario = @usuario AND Contrasena = @contrasena";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@usuario", usuario);
                     cmd.Parameters.AddWithValue("@contrasena", contrasena);

@@ -13,7 +13,7 @@ namespace GestiondeVentaZamira.Views
     public partial class Pedido : Window
     {
         private readonly List<CarritoItem> carrito = new List<CarritoItem>();
-        private readonly string connectionString = "server=127.0.0.1;port=3306;user=root;password=12345;database=sistemaventazamira;";
+        private readonly string connectionString = "server=yamabiko.proxy.rlwy.net;port=34163;user=root;password=sFrdysrDfZtahYVhsdyzhNsKECijredS;database=railway;";
         private bool _isInitialized;
 
         public Pedido()
@@ -54,7 +54,7 @@ namespace GestiondeVentaZamira.Views
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "SELECT id_producto, nombre, precio FROM producto";
+                    string query = "SELECT id_producto, nombre, precio FROM PRODUCTO";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -118,7 +118,7 @@ namespace GestiondeVentaZamira.Views
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "SELECT precio FROM producto WHERE nombre = @nombre";
+                    string query = "SELECT precio FROM PRODUCTO WHERE nombre = @nombre";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@nombre", producto);
                     object result = cmd.ExecuteScalar();
@@ -198,7 +198,7 @@ namespace GestiondeVentaZamira.Views
                     long clienteId;
 
                     // Buscar cliente por correo
-                    string buscarCliente = "SELECT id_cliente FROM cliente WHERE correo = @correo";
+                    string buscarCliente = "SELECT id_cliente FROM CLIENTE WHERE correo = @correo";
                     MySqlCommand cmdBuscarCliente = new MySqlCommand(buscarCliente, conn);
                     cmdBuscarCliente.Parameters.AddWithValue("@correo", CorreoUsuarioTextField.Text);
                     object clienteExistente = cmdBuscarCliente.ExecuteScalar();
@@ -211,7 +211,7 @@ namespace GestiondeVentaZamira.Views
                     else
                     {
                         // Cliente no existe, lo insertamos
-                        string insertCliente = "INSERT INTO cliente (nombre, correo) VALUES (@nombre, @correo)";
+                        string insertCliente = "INSERT INTO CLIENTE (nombre, correo) VALUES (@nombre, @correo)";
                         MySqlCommand cmdCliente = new MySqlCommand(insertCliente, conn);
                         cmdCliente.Parameters.AddWithValue("@nombre", NombreUsuarioTextField.Text);
                         cmdCliente.Parameters.AddWithValue("@correo", CorreoUsuarioTextField.Text);
@@ -221,7 +221,7 @@ namespace GestiondeVentaZamira.Views
 
                     // Insertar pedido
                     string insertPedido = @"
-                        INSERT INTO pedido 
+                        INSERT INTO PEDIDO 
                         (id_cliente, fecha_pedido, estado, total)
                         VALUES 
                         (@id_cliente, @fecha_pedido, @estado,  @total)";
@@ -248,7 +248,7 @@ namespace GestiondeVentaZamira.Views
                     foreach (var item in carrito)
                     {
                         // Obtener el id_producto usando el nombre del producto
-                        string getProductIdQuery = "SELECT id_producto FROM producto WHERE nombre = @nombre";
+                        string getProductIdQuery = "SELECT id_producto FROM PRODUCTO WHERE nombre = @nombre";
                         MySqlCommand getProductIdCmd = new MySqlCommand(getProductIdQuery, conn);
                         getProductIdCmd.Parameters.AddWithValue("@nombre", item.Producto);
                         object result = getProductIdCmd.ExecuteScalar();
@@ -261,7 +261,7 @@ namespace GestiondeVentaZamira.Views
                         int idProducto = Convert.ToInt32(result);
 
                         string insertDetalle = @"
-                            INSERT INTO detalle_pedido
+                            INSERT INTO DETALLE_PEDIDO
                             (id_pedido, id_producto, cantidad, precio_unitario, producto, subtotal) 
                             VALUES 
                             (@id_pedido, @id_producto, @cantidad, @precio_unitario, @producto, @subtotal)";
@@ -285,7 +285,7 @@ namespace GestiondeVentaZamira.Views
                         else metodoPago = "transferencia"; // o "efectivo" si ajustas la BD
 
                         string insertPago = @"
-                            INSERT INTO pago (id_pedido, metodo, monto, estado)
+                            INSERT INTO PAGO (id_pedido, metodo, monto, estado)
                             VALUES (@id_pedido, @metodo, @monto, @estado)";
                         MySqlCommand cmdPago = new MySqlCommand(insertPago, conn, transaction);
                         cmdPago.Parameters.AddWithValue("@id_pedido", pedidoId);
@@ -300,7 +300,7 @@ namespace GestiondeVentaZamira.Views
                     if (metodoEntrega == "Envío a domicilio")
                         {
                             string insertEnvio = @"
-                                INSERT INTO envio (id_pedido, metodo_entrega, direccion_entrega, estado, fecha_estimada, fecha_entrega)
+                                INSERT INTO ENVIO (id_pedido, metodo_entrega, direccion_entrega, estado, fecha_estimada, fecha_entrega)
                                 VALUES (@id_pedido, @metodo_entrega, @direccion_entrega, @estado, @fecha_estimada, @fecha_entrega)";
                             MySqlCommand cmdEnvio = new MySqlCommand(insertEnvio, conn, transaction);
                             cmdEnvio.Parameters.AddWithValue("@id_pedido", pedidoId);

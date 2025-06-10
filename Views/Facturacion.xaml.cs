@@ -29,7 +29,7 @@ namespace GestiondeVentaZamira.Views
         {
             facturas.Clear();
 
-            string connectionString = "server=127.0.0.1;port=3306;user=root;password=12345;database=sistemaventazamira;";
+            string connectionString = "server=yamabiko.proxy.rlwy.net;port=34163;user=root;password=sFrdysrDfZtahYVhsdyzhNsKECijredS;database=railway;";
             string query = @"
                 SELECT 
                     p.id_pedido, 

@@ -12,7 +12,7 @@ namespace GestiondeVentaZamira.Views
         private ObservableCollection<ProductoStock> productos;
 
         // Aquí está tu cadena de conexión
-        private string connectionString = "server=127.0.0.1;port=3306;user=root;password=12345;database=sistemaventazamira;";
+        private string connectionString = "server=yamabiko.proxy.rlwy.net;port=34163;user=root;password=sFrdysrDfZtahYVhsdyzhNsKECijredS;database=railway;";
 
         public Inventario()
         {

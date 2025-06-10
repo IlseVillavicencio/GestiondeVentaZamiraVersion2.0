@@ -18,7 +18,7 @@
 
                 <Button x:Name="btnNuevaFactura" Content="Nueva Factura" Width="120" Margin="0,0,10,0" Style="{StaticResource ButtonStyle}" />
                 <Button x:Name="btnVerDetalles" Content="Ver Detalles" Width="120" Margin="0,0,10,0" Style="{StaticResource ButtonStyle}" />
-                <Button x:Name="btnEliminar" Content="Eliminar" Width="120" Margin="0,0,10,0" Style="{StaticResource ButtonStyle}" />
+                <Button x:Name="btnEliminar" Content="Realizar devolución" Width="140" Margin="0,0,10,0" Style="{StaticResource ButtonStyle}" />
                 <Button x:Name="btnReporteOperaciones" Content="Reporte de Operaciones" Width="170" Margin="0,0,10,0" Style="{StaticResource ButtonStyle}" />
                 <Button x:Name="btnTicket" Content="Imprimir Ticket" Click="BtnTicket_Click" Width="120" Margin="0,0,10,0" Style="{StaticResource ButtonStyle}" />
             </StackPanel>
